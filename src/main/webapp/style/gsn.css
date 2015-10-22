@@ -12,14 +12,14 @@ h2
 
 a	
 {
-	color: #666666;
+	color: #F1A629;
 	text-decoration:none;
 	background-color:inherit;
 }
 
 a:hover
 { 
-	color: #000000 /*#2a5a8a*/;
+	color: #F1A629 /*#2a5a8a*/;
 	text-decoration:none; 
 	background-color:inherit;
 }
@@ -44,9 +44,9 @@ input[type=button],input[type=submit]
 	
 	margin:1px;
 	
-	border: 1px solid #7c6;
-	border-left: 10px solid #7c6;
-	background-color: #DCFFDC;
+	border: 1px solid #011A59;
+	border-left: 10px solid #011A59;
+	background-color: #c5e2fe;
 }
 
 
@@ -54,7 +54,7 @@ input[type=button],input[type=submit]
 
 input[type=button]:active,input[type=button]:hover,input[type=submit]:active,input[type=submit]:hover
 {
-	color: #7c6;
+	color: #ABBBDF;
 	background-color: white;
 }
 
@@ -63,7 +63,7 @@ body, html
 {
 	margin:0;
 	padding:0;
-	background:#DFDFDF;
+	background: #OO33OO; /*#DFDFDF; background outside GSN window*/ 
 	color:#000;
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size:12px;
@@ -72,9 +72,8 @@ body, html
 
 body 
 {
+	min-width: 900px;	
 		font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	
-	min-width:750px;	
 	width: 100%; 
 	height: 100%; 
 	margin: 0; 
@@ -88,8 +87,6 @@ body
 	width:100%;
 	background:#FFFFFF;
     -moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 }
 #header, #headerfm 
@@ -107,28 +104,29 @@ body
 
 #header h1 
 {
-	padding:32px 130px;
+	padding:20px 20px;
 	margin:0;
+	text-align:right;
 }
 
 #headerfm h1 
 {
 	margin:0;
-	padding:32px 0 32px 130px;
+	padding:30px 0 30px 30px;
 	font-size:1.7em;
 }
 #header a,#headerfm a 
 {
 	text-decoration:none;
-	color:#000000;
+	color:#002D4C; /*text colour of header eg slf data access::gsn*/
 }
-#navigation
+#navigation /*top menu bar*/
 {
 	height:2.2em;
 	line-height:2.2em;
 	margin:0;
 	padding:0;
-	background:#7c6;
+	background:#002D4C;
 	color:#9e9e9e;
 }
 
@@ -162,51 +160,8 @@ body
 	/*font-weight:bold;*/
 
 }
-#logintextprime 
-{
-    padding:0 10px;
-	font-size:0.8em;
-	font-weight:bolder;
-	text-transform:uppercase;
-	text-decoration:none;
-	background-color:inherit;
-	color: #000000;
-}
-#logintextfirst
-{
 
-	display:block;
-	padding:0 10px;
-	font-weight:bolder;
-	text-transform:uppercase;
-	text-decoration:none;
-	background-color:inherit;
-	color: #000000;
-}
-
-#logintextsecond
-{
-    
-    color: #000000;
-    font-weight:bold;
-	
-}
-#logintextthird a
-{
-    
-	display:block;
-	padding:0 10px;
-	font-size:0.8em;
-	font-weight:bolder;
-	text-transform:uppercase;
-	text-decoration:none;
-	background-color:inherit;
-	color: #000000;
-}
-
-
-
-#navigation li a
+#navigation li a /*top menu bar text colour*/
 {
 	display:block;
 	padding:0 10px;
@@ -215,7 +170,7 @@ body
 	text-transform:uppercase;
 	text-decoration:none;
 	background-color:inherit;
-	color: #000000;
+	color: #FFFFFF;
 }
 
 * html #navigation a 
@@ -223,20 +178,23 @@ body
 	width:1%;
 }
 
-#navigation .selected
-{
-	background:#ffffff;
-	color:#000000;
-	text-decoration:none;
-}
+/*selected menu bar items*/
 #navigation a:hover
 {
 	/*background:#80b0da;*/
 	/*color:#ffffff;*/
-	background:#9D8; /*#ff6f00;*/
+	background:#c5e2fe; /*#ff6f00;*/
 	color:#000000;
 	text-decoration:none;
 }
+
+#navigation .selected /*Top menu bar of the page that you are on*/
+{
+        background:#c5e2fe;
+        color: black;
+        text-decoration:none;
+}
+
 
 #fullscreenContent{
 	text-align:center;
@@ -245,33 +203,34 @@ body
 	margin-top:1%;
 	background-color: #FFFFFF;
 }
+
 #seeLink{
 	text-align:left;
 	margin-left:5%	;
 	width:90%;
-	background-color:#9d8;
-	border: 1px solid #7c6;
+	background-color:#c5e2fe;
+	border: 1px solid #011A59;
 }
 
 #datechooser 
 {
 	clear:both;
 	margin:1px;
-	border: 1px solid #7c6;
+	border: 1px solid #011A59;
 	margin-bottom:8px;
-	background:#7c6;
+	background:#011A59;
 }
 
 
 .step
 {
-	background-color:#7c6;
+	background-color:#FFFFFF;
 	color:#000000;
 }
 
 .data
 {
-	background-color:#ffffff;
+	background-color:#FFFFFF;
 }
 
 .query
@@ -346,17 +305,17 @@ body
 	display: block;
 	margin: 1px;
 	padding: 5px 5px 5px 0.5em;
-	border-left: 10px solid #F0FFCF;
-	background-color: #DCFFDC;
-	color: #7c6;
+	border-left: 10px solid #f1A629;
+	background-color: #002D4C;
+	color: #FFFFFF;
 	text-decoration: none;
 }
 
 .rubric:hover
 {
 	display: block;
-	border-left-color: #F0FFCF;
-	background-color: #DCFFDC;
+	border-left-color: #002D4C;
+	background-color: #f1a629;
 	color: black;
 }
 
@@ -365,23 +324,24 @@ body
 	display: block;	
 	margin: 1px;
 	padding: 5px 5px 5px 29px;
-	border-left: 10px solid #F0FFCF;
-	background-color: #DCFFDC;
-	color: #7c6;
+	border-left: 10px solid #002D4C;
+	background-color: #f1a629;
+	color: black;
 	text-decoration: none;
 }
 
 
 #dropArea .sensorName:hover
 {
-	background-color: white;/*#F0F000;*/
-	border-left-color: #F0FFCF;
+	background-color: #DFDFDF;/*#F0F000; */
+	border-left-color: #011A59;
+	color: black;
 }
 
 #dropArea
 {
-	border: thin double #7c6;
-	background-color: #9d8;
+	border: thin double #011A59;
+	background-color: #ffffff;
 	height: 220px;
 	text-align:left;
 }
@@ -390,15 +350,15 @@ body
 {
 /*	background-color: none;*/
 	height: 300px;
-	width:80%;
+	width:60%;
 	margin-left: 10%;
 	text-align:left;
 }
 
 #titleDropArea
 {
-	background-color: #7c6;
-	border: thin double #7c6;
+	background-color: #c5e2fe;
+	border: thin double #011A59;
 	text-align:center;
 }
 
@@ -411,9 +371,9 @@ html>body #vsmenu div a
 
 #vsmenu a:hover, #vsmenu div span:hover
 {
-	border-left: 10px solid #7c6;
-	background-color: #F0FFCF;
-	color: #7c6;
+	border-left: 10px solid #002D4C;
+	background-color: #f1a629;
+	color: #fff;
 }
 
 #vsmenu .toggle, #vsmenu .toggle:hover, #vsmenu .toggle:visited 
@@ -426,13 +386,14 @@ html>body #vsmenu div a
 	font-weight:bold;
 }
 
-#msg 
+#msg /*message at top ....Welcome to GSN... */
 {
-	border-top: 2px solid #7c6;
-	border-bottom: 2px solid #7c6;
-	background: #9d8;
+	border-top: 2px solid #c5e2fe;
+	border-bottom: 2px solid #c5e2fe;
+	background: #002D4C;
 	margin: 5px 0;
 	padding:5px;
+	color:white;
 }
 
 #msg.good 
@@ -446,27 +407,28 @@ html>body #vsmenu div a
 	color:red;
 }
 
-/* specific style for vsbox and core bellow */
+/* specific style for vsbox and core below */
 .tooltip 
 {
-	border: 1px solid #7c6;
+	border: 1px solid #011A59;
 	padding: 2px;
-	background: #9d8;
-	color: black;
+	background: #c5e2fe;
+	color: white;
 }
 
 .vsbox 
 {
 	clear:both;
 	margin:1px;
-	border: 1px solid #7c6;
+	border: 1px solid #011A59;
 	margin-bottom:8px;
-	background:#7c6;
+	background:#002D4C;
+	color:white;
 }
 .followed 
 {
-	background:#84FF84;
-	border: 1px solid #84FF84;
+	background:#c5e2fe;
+	border: 1px solid #011A59;
 }
 
 .vsbox h3 
@@ -488,7 +450,7 @@ html>body #vsmenu div a
 
 .vsbox h3 a .vsname 
 {
-	color:#000;text-decoration:underline;
+	color:#fff;text-decoration:underline;
 }
 		
 .vsbox h3 a.close 
@@ -508,7 +470,8 @@ html>body #vsmenu div a
 	clear:both;
 	padding:3px;
 	margin:0;
-	background:#ffffff;
+	background:#FFFFFF; /*Virtual sensor real time box*/
+	color:black;
 }		
 
 .vsbox dt 
@@ -519,7 +482,7 @@ html>body #vsmenu div a
 	padding:0;
 	margin:0;
 	padding-right:5px;
-	min-width:100px;
+	width:250px;
 	height:1.3em;
 	text-align:right;
 }
@@ -607,13 +570,13 @@ html>body #vsmenu div a
 .tabnav a:link, .tabnav a:visited
 {
 	float: left;
-	background: #9d8;
+	background: #FFFFFF;
 	font-size: 10px;
 	line-height: 14px;
 	font-weight: bold;
 	padding: 2px 10px 2px 10px;
 	margin-right: 4px;
-	border: 1px solid #9d8;
+	border: 1px solid #DFDFDF;
 	text-decoration: none;
 	color: #666;
 	-moz-border-radius-topleft: 4px;
@@ -625,13 +588,13 @@ html>body #vsmenu div a
 .tabnav a:link.active, .tabnav a:visited.active
 {
 	border-bottom: 1px solid #fff;
-	background: #fff;
+	background: #FFFFFF;
 	color: #000;
 }
 
 .tabnav a:hover
 {
-	background: #fff;
+	background: #DFDFDF;
 }
 
 .gpsenabled 
@@ -688,7 +651,7 @@ div.popup-calendar
 	top: 0;
 	left: -16px; /* value for IE */
 	padding: 4px;
-	border: 2px solid #7c6;
+	border: 2px solid #011A59;
 	background: #fff;
 	color: #000;
 	overflow:hidden;
@@ -730,7 +693,7 @@ div.popup-calendar div a
 
 div.popup-calendar div a:hover 
 {
-	background-color: #7c6;
+	background-color: #011A59;
 	color: #fff;
 }
 
@@ -780,7 +743,7 @@ div.popup-calendar table td.today a
 
 div.popup-calendar table td a.selected, div.popup-calendar table td a:hover 
 {
-	background: #7c6; 
+	background: #011A59; 
 	color: #fff;
 }
 
@@ -804,14 +767,14 @@ input.date-picker
 
 #dataSet
 {
-	border: thin double #7c6;
-	background-color: #9d8;
+	border: thin double #000;/*#c5e2fe;*/
+	background-color: #ffffff;
 }
 
 .stepContainer .step
 {
-	border: thin double #7c6;
-	background-color: #9d8;
+	border: thin double #011A59;
+	background-color: #ffffff;
 	margin-bottom: 1px;
 	padding: 1px;
 	cursor:pointer;
@@ -819,14 +782,14 @@ input.date-picker
 
 .stepContainer .step:hover
 {
-	background-color: #F0FFCF;
+	background-color: #ffffff;
 }
 
 #colorDiv
 {
 	float: left;
 	width: 300px;
-	border: thin double #7c6;
+	border: thin double #011A59;
 }
 
 #fieldsDiv
@@ -846,7 +809,7 @@ input.date-picker
 
 .ui-accordion {
     height: 474px;
-    border: 1px solid #7c6;
+    border: 1px solid #002D4C;
 }
 
 .ui-accordion-content {
@@ -861,8 +824,8 @@ input.date-picker
     text-decoration: none;
     font-weight: bold;
     font-size: 11px;
-    color: black;
-    background-color: #7c6;
+    color: white;
+    background-color: #002D4C;
 }
 
 .drawer-handle {
@@ -889,7 +852,7 @@ input.date-picker
     display: block;
     width: auto;
     height: 20px;
-    border-bottom: 1px solid #7c6;
+    border-bottom: 1px solid #c5e2fe;
     padding: 0;
 }
 
@@ -899,7 +862,7 @@ input.date-picker
 }
 
 .ui-tabs-nav-item a {
-    border: 1px solid #7c6;
+    border: 1px solid #c5e2fe;
     border-bottom: none;
     text-align: center;
     display: block;
@@ -908,11 +871,11 @@ input.date-picker
     padding: 2px;
     margin-right: 4px;
     font-weight: bold;
-    background-color: #9d8;
+    background-color: #002D4C;
 }
 
 .ui-tabs-selected a {
-    background-color: #7c6;
+    background-color: #002D4C;
 }
 
 .clear-both {
@@ -959,7 +922,7 @@ input.date-picker
 }
 
 #gridContainer table th {
-    background-color: #9d8;
+    background-color: #c5e2fe;
 }
 
 /* dialog - zomming - plotting */
@@ -988,6 +951,7 @@ input.date-picker
     position: absolute !important;
     left: 0px !important;
     top: 0px !important;
+   /* background-color: #ffffff;*/
 }
 .miniature {
     float: right;

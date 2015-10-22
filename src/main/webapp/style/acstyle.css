@@ -4,6 +4,7 @@ text-align:center;
 font-size:12px;
 font-family:'Lucida Grande',Verdana,sans-serif;
 margin:10px;
+background-color: #FFFFFF
 }
 .loginhandlerbody {
 text-align:left;
@@ -25,14 +26,14 @@ font-size:15px;
 /*color: #0000FF;*/
 /*background-color:#DFDFDF;*/
 color: #000000;
-background:#E0EEE0;
+background:#EEEEE0;
 padding:0.3em;
 }
 
 h3 {
 font-size:14px;
 /*color:#66CC66;*/
-color:#3FCD3F;
+color:#3f8acd;
 }
 
 .registerli
@@ -51,9 +52,9 @@ font-weight:bold;
 font-size:17px;
 /*color: #0000FF;*/
 /*background-color:#DFDFDF;*/
-border-top: 2px solid #7c6;
-border-bottom: 2px solid #7c6;
-background: #9d8;
+border-top: 2px solid #002d4c;
+border-bottom: 2px solid #002d4c;
+background:#FFFFFF;
 margin: 5px 0;
 padding:0.3em;
 font-weight:bold;
@@ -77,11 +78,15 @@ font-weight:bold;
 
 #container {
 text-align:left;
-width: 1200px;
+width: 1000px;
 margin: 10px auto 10px auto;
 padding: none;
 border: none;
-background-color:#DCFFDC;
+background-color:#FFFFFF;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
 }
 
 
@@ -92,13 +97,23 @@ width: 600px;
 margin: 10px;
 padding: none;
 border: none;
-background-color:#DCFFDC;
+background-color:#FFFFFF;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+
 }
 
 #loginhandlercontainer {
 width:300px;
 border: none;
 padding: 20px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+
 }
 
 .box {
@@ -109,83 +124,87 @@ border: 2px ridge #DFDFDF;
 }
 
 
-
+/*Banner*/
 #masthead {
 margin:0;
 padding:10px;
 border:1px solid #FFF;
-background-color:#11EE11;
+background-color:#c5e2fe;
 }
 
 #groupmasthead {
 margin:none;
 padding:none;
 border:none;
-background-color:#11EE11;
+background-color:#c5e2fe;
 }
 
+/*menubar*/
 #mastheadborder {
 margin:0 0 10px 0;
 padding:10px;
 border:1px solid #FFF;
-background-color:#7c6;
+background-color:#002d4c;
+color:#FFFFFF;
 }
 
 #groupmastheadborder {
 margin:none;
 padding:none;
 border:none;
-background-color:#7c6;
+background-color:#002d4c;
 }
 
 #content {
+width:750px;
 margin-bottom:10px;
 padding:10px;
-background-color:#DCFFDC;
+background-color:#FFFFFF;
 }
 
 #groupcontent {
 margin-bottom:none;
 padding:none;
-background-color:#DCFFDC;
+background-color:#FFFFFF;
 }
 
 #twocolumnscontent {
 float:left;
-width:34%;
+width:47%;
 margin-bottom:10px;
 padding:10px;
 border:1px solid transparent;
-background-color:#DCFFDC;
+background-color:#FFFFFF;
 }
 
 
 #sidebar {
 float:right;
-width:56%;
+width:47%;
 margin-bottom:10px;
 padding:10px;
 border:1px solid transparent;
-background-color:#DCFFDC;
+background-color:#FFFFFF;
 }
 
 #footer {
+color:#FFF;
 padding:10px;
 border:1px solid #FFF;
-background-color:#7c6;
+background-color:#c5e2fe;
 }
 
 #groupfooter {
 padding:10px;
 border:1px solid #FFF;
-background-color:#7c6;
+background-color:#c5e2fe;
 }
 
 #twocolumnsfooter {
 clear:both;
 padding:10px;
 border:1px solid #FFF;
-background-color:#7c6;
+background-color:#c5e2fe;
 }
 
 p {
@@ -203,7 +222,7 @@ font: bold 12px 'Lucida Grande',Verdana,sans-serif;
 
 
 .linklistli {
-background: #E0EEE0;
+background: #EEEEE0;
 margin: 0; padding: 2px 10px;
 border-left: 1px solid #fff;
 border-top: 1px solid #fff;
@@ -217,31 +236,30 @@ text-decoration:none;
 }
 
 ul a:link {
-color:#0000;
+color:#000;
 }
 
 ul a:visited {
-color:#666;
+color:#000;
 }
 
 ul a:hover {
-color:#0022FF;
-background:#FFF;
+color:#000;
 }
 
 ul a:active {
-color:#333;
+color:#000;
 }
 .linkclass {
-background: #9d8;
+background: #FFFFFF;
 font-size: 10px;
 line-height: 14px;
 font-weight: bold;
 padding: 2px 10px 2px 10px;
 margin-right: 4px;
-border: 1px solid #9d8;
+border: 1px solid #FFFFFF;
 text-decoration: none;
-color: #666;
+color: #FFF;
 }
 
 
@@ -258,7 +276,7 @@ text-align:center;
 }
 
 .displaylinkli {
-background: #E0EEE0;
+background: #EEEEE0;
 font :12px 'Lucida Grande',Verdana,sans-serif;
 margin: 0; padding: 2px 10px;
 border-left: 1px solid #fff;
@@ -291,12 +309,12 @@ color:#000000;
 }
 
 .displaylinkli a:hover {
-color:#0022FF;
+color:#0000FF;
 background:#FFFFFF;
 }
 
 .displaylinkli a:active {
-color:#0022FF;
+color:#0000FF;
 }
 
 
@@ -332,7 +350,7 @@ width:250px;
 text-decoration:none;
 display:block; padding: 2px 10px;
 color:#858585;
-background-color: #E0EEE0;
+background-color: #EEEEE0;
 font: bold 12px 'Lucida Grande',Verdana,sans-serif;
 margin:5px;
 }
@@ -345,13 +363,13 @@ text-decoration:none;
 }
 
 .linkclass {
-background: #9d8;
+background: #FFFFFF;
 font-size: 10px;
 line-height: 14px;
 font-weight: bold;
 padding: 2px 10px 2px 10px;
 margin-right: 4px;
-border: 1px solid #9d8;
+border: 1px solid #FFFFFF;
 text-decoration: none; color: #666;
 }
 
@@ -361,7 +379,7 @@ margin:5px 0 5px 0;
 color:#333;
 text-decoration:none;
 border:3px double #333;
-background:#DDDDDD;
+background:#FFFFFF;
 padding:2px;
 line-height:200%;
 }
@@ -407,9 +425,9 @@ margin-bottom:10px;
 table
 {
 /*border: 1px solid transparent;*/
-border: 1px solid #7c6;
+border: 1px solid #002d4c;
 font: normal 12px 'Lucida Grande',Verdana,sans-serif;
-font-color:#355435;
+font-color:#ffffff;
 /*background-color:#D1A695;*/
 /*background-color:#A28C75;*/
 background-color:transparent;
@@ -425,15 +443,15 @@ padding:3px;
 th {
 
 
-color:#000;
+color:#fff;
 /*background-color:#515435;*/
-background-color:#7c6;
+background-color:#002d4c;
 border-style:solid; border-width:1px;
 border-color:transparent;
 }
 
 td {
-background-color:#9d8;
+background-color:#FFFFFF;
 border-style:solid;
 border-width:1px;
 border-color:transparent;
@@ -451,7 +469,7 @@ font: normal 12px 'Lucida Grande',Verdana,sans-serif;
 }
 
 .invisibletable td {
-background-color:#DCFFDC;
+background-color:#FFFFF;
 border:none;
 }
 
@@ -494,15 +512,15 @@ padding:0;
 font: normal 12px 'Lucida Grande',Verdana,sans-serif;
 margin:0 0 10px 0;
 padding:5px;
-border:1px solid #7c6;
+border:1px solid #002d4c;
 
 }
 
 .loginhandlerfieldset p {
 margin:3px 0 2px 0;
 padding:5px;
-border:1px solid #7c6;
-background-color:#9d8;
+border:1px solid #002d4c;
+background-color:#FFFFFF;
 }
 label {
 font-weight:bold;
@@ -519,12 +537,12 @@ border:1px solid #8A8A8A;
 fieldset p {
 margin:3px 0 2px 0;
 padding:5px;
-border:1px solid #7c6;
-background-color:#11EE11;
+border:1px solid #002d4c;
+background-color:#c5e2fe;
 }
 
 legend {
-background-color:#E0EEE0 ;
+background-color:#EEEEE0 ;
 margin: 0;
 padding:5px;
 border-style:solid;
@@ -535,17 +553,17 @@ border-color:#FFF #AAA #666 #FFF;
 
 .inputclass{
 margin:5px 0 5px 0;
-border:3px double #7c6;
+border:3px double #002d4c;
 }
 
 .checkboxclass{
 margin:5px 0 5px 0;
-border:3px double #7c6;
+border:3px double #002d4c;
 }
 
 .textarea {
 margin:5px 0 5px 0;
-border:3px double #7c6;
+border:3px double #002d4c;
 }
 
 #vsname {
@@ -564,7 +582,7 @@ width:100%;
 /********************************* button ***************************************/
 .buttonstyle {
 color: #000;
-background:#CAE3CA;
+background:#D8E3CA;
 border: 2px outset #d7b9c9;
 width:50px;
 text-align:center;
@@ -573,7 +591,7 @@ width:100px;
 
 .fileuploaderbuttonstyle {
 color: #000;
-background:#CAE3CA;
+background:#D8E3CA;
 border: 2px outset #d7b9c9;
 width:50px;
 text-align:center;
@@ -582,7 +600,7 @@ height:30px;
 }
 
 .loginhandlerbuttonstyle {
-background:#E0EEE0;
+background:#EEEEE0;
 margin:5px 0 5px 0;
 border:1px double #8A8A8A;
 /*border-color:#FFF #AAA #666 #FFF;*/
@@ -594,7 +612,7 @@ text-align:center;
 
 .bigsumitbuttonstyle{
 color: #000;
-background: #CAE3CA;
+background: #D8E3CA;
 border: 2px outset #d7b9c9;
 width:160px;
 height:40px;
@@ -605,7 +623,7 @@ padding:10px;
 
 .sumitbuttonstyle{
 color: #000;
-background:#CAE3CA;
+background:#D8E3CA;
 border: 2px outset #d7b9c9;
 width:50px;
 text-align:center;
@@ -616,7 +634,7 @@ height:30px;
 
 .halfsumitbuttonstyle{
 color: #000;
-background: #CAE3CA;
+background: #D8E3CA;
 border: 2px outset #d7b9c9;
 width:100px;
 height:40px;
@@ -628,7 +646,7 @@ padding:10px;
 
 .changegroupbuttonstyle {
 color: #000;
-background: #7c6;
+background: #FFA84C;
 border: 2px outset #d7b9c9;
 width:180px;
 text-align:center;
@@ -638,7 +656,7 @@ font-weight:bold;
 
 .creategroupbuttonstyle {
 color: #000;
-background: #CAE3CA;
+background: #D8E3CA;
 border: 2px outset #d7b9c9;
 width:180px;
 text-align:center;
