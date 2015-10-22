@@ -1,13 +1,13 @@
 <project name="gsn" default="build" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
 
-    <property name="safe-storage-port" value="25700"/>
-    <property name="safe-storage-controller-port" value="25712"/>
-    <property name="gsn-controller-port" value="22932"/>
+    <property name="safe-storage-port" value="25300"/>
+    <property name="safe-storage-controller-port" value="25312"/>
+    <property name="gsn-controller-port" value="22532"/>
     <property name="max-servlets" value="20"/>
     <property name="max-form-size" value="500000000"/>
-    <property name="max-db-connections" value="8"/>
-    <property name="max-sliding-db-connections" value="8"/>
-    <property name="remote-keep-alive-period" value="15000"/>
+    <property name="max-db-connections" value="80"/>
+    <property name="max-sliding-db-connections" value="12"/>
+    <property name="remote-keep-alive-period" value="600000"/>
     <property name="aes-enc-salt" value="this is a simple clear salt"/>
 
 
@@ -33,7 +33,7 @@
         <property name="libdir" value="lib"/>
         <!--property name="dependencies" value="target/dependency"/>-->
         <property name="reports" value="target/reports"/>
-        <property name="maxMemoryUsage" value="128m"/>
+        <property name="maxMemoryUsage" value="2048m"/>
         <property name="jar.file" value="gsn-core.jar"/>
         <!--  Enable the following line when you want to use Java Media Framework.
               You should unarchive the complete archive provide by sun and fix the
