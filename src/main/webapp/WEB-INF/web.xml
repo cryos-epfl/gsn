@@ -14,9 +14,9 @@
 		WEB SERVICES CALL [ USED FOR INTERACTIONS WITH MICROSOFT SENSOR MAP ] ; there 
 		is another part down in this file which has to be uncommented to have the 
 		axis working. ******************************************************************************* -->
-	<!-- <servlet> <servlet-name>AxisServlet</servlet-name> <display-name>Apache-Axis 
+	 <servlet> <servlet-name>AxisServlet</servlet-name> <display-name>Apache-Axis 
 		Servlet</display-name> <servlet-class>org.apache.axis2.transport.http.AxisServlet</servlet-class> 
-		<load-on-startup>1</load-on-startup> </servlet> -->
+		<load-on-startup>1</load-on-startup> </servlet>
 <!-- 
 	<servlet>
 		<servlet-name>PlayServlet</servlet-name>
