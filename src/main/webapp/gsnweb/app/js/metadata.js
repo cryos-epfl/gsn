@@ -12,7 +12,7 @@ var metadata = angular.module("metadata", [])
                 };
 
                 $scope.hasGSNMetadata = function () {
-                    return $scope.hasMetadata() && difMetadata.data.gsn[0].indexOf("sensorName");
+                    return $scope.hasMetadata() && difMetadata.data.gsn[0].indexOf("sensorName") > -1;
                 };
 
                 $scope.hasWikiLink = function () {
@@ -32,9 +32,13 @@ var metadata = angular.module("metadata", [])
                 }
 
                 $scope.download = function () {
-                    var url = "http://montblanc.slf.ch:22001/multidata?download_format=csv&field[0]=All&vs[0]="
-                        + $scope.gsnMetadata.features[0].properties.sensorName;
-                    $window.location.href = url;
+                    if (ftpLink.length > 0) {
+                        $window.location.href  = ftpLink;
+                    } else {
+                        var url = "http://montblanc.slf.ch:22001/multidata?download_format=csv&field[0]=All&vs[0]="
+                            + $scope.gsnMetadata.features[0].properties.sensorName;
+                        $window.location.href = url;
+                    }
                 };
 
                 $scope.explore = function () {
@@ -47,6 +51,21 @@ var metadata = angular.module("metadata", [])
                     FilterParameters.updateURLFromMap($location);
 
                 };
+
+                function getFTPLink(){
+                    if ($scope.hasDif()) {
+                        var urls = $scope.dif.DIF.Related_URL;
+                        for (var i = 0; i < urls.length; i++) {
+                            var url = urls[i];
+                            if (url.URL.indexOf('ftp') > -1) {
+                                return url.URL;
+                            }
+                        }
+                    }
+                    return "";
+                }
+
+               var ftpLink = getFTPLink();
 
             }])
 
@@ -71,6 +90,7 @@ var metadata = angular.module("metadata", [])
                         }
 
                         var url = 'http://montblanc.slf.ch:8090/web/metadatadif/' + sensorName;
+                        //var url = 'http://localhost:8090/web/metadatadif/' + sensorName;
 
                         self.promise = $http({
                             method: 'GET',

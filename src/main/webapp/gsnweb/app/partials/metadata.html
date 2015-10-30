@@ -1,109 +1,147 @@
 <div layout="column" layout-sm="column" layout-margin>
     <section layout="row" flex>
-            <div class="panel panel-default">
-                <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-body">
 
 
-                    <div ng-if="!hasDif() && !hasGSNMetadata()">
-                        {{errorMessage}}
+                <div ng-if="!hasDif() && !hasGSNMetadata()">
+                    {{errorMessage}}
+                </div>
+
+                <div ng-if="hasDif()">
+
+                    <h3>{{dif.DIF.Entry_Title}}</h3>
+
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">BASIC INFORMATION</h4>
+
+                            <p class="list-group-item-text">
+
+                            <p><label>Abstract: </label> {{dif.DIF.Summary.Abstract}} </p>
+
+                            <div ng-if="hasGSNMetadata()"><p><label>Keywords: </label>
+                                {{gsnMetadata.features[0].properties.observed_properties.join()}}
+                            </p></div>
+
+                            <p><label>Creation Date: </label> {{dif.DIF.DIF_Creation_Date}} </p>
+
+                            </p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">COVERAGE</h4>
+
+                            <p class="list-group-item-text">
+
+                            <p><label>Spatial coverage: </label> {{dif.DIF.Spatial_Coverage.Southernmost_Latitude}},
+                                {{dif.DIF.Spatial_Coverage.Westernmost_Longitude}}</p>
+
+                            <p><label>Temporal coverage: </label> {{dif.DIF.Temporal_Coverage.Start_Date |
+                                date:"yyyy-MM-dd"}} &mdash; {{dif.DIF.Temporal_Coverage.Stop_Date | date:"yyyy-MM-dd"}}
+                            </p>
+                            </p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">LOCATION</h4>
+
+                            <p class="list-group-item-text">
+                            <p><label>Geographical Location: </label> {{dif.DIF.Location.Detailed_Location}}</p>
+                                <div ng-if="hasGSNMetadata()" class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h2 class="panel-title">Computed Topography</h2>
+                                    </div>
+                                    <div class="panel-body">
+                                        <label>Elevation: </label> {{gsnMetadata.features[0].properties.elevation}} m;
+                                        <label>Slope: </label> {{gsnMetadata.features[0].properties.slopeAngle}} &deg;;
+                                        <label>Aspect: </label> {{gsnMetadata.features[0].properties.aspect}} &deg;
+                                    </div>
+                                </div>
+
+                            </p>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <h4 class="list-group-item-heading">STRUCTURE</h4>
+                            <p class="list-group-item-text">
+                            <div ng-if="hasGSNMetadata()" class="panel panel-default">
+                            <p><label>Parameters: </label></p>
+                            <ul>
+                                <li ng-repeat="parameter in gsnMetadata.features[0].properties.observed_properties">
+                                    <i>{{parameter}}</i>: {{gsnMetadata.features[0].properties[parameter].join()}}
+                                </li>
+                            </ul>
+                            </div>
+
+                            </p>
+                        </a>
                     </div>
 
-                    <div ng-if="hasDif() && hasGSNMetadata()">
-                        <h3>{{dif.DIF.Entry_Title}}</h3>
-                        <h4>BASIC INFORMATION</h4>
+                    <a href="#" class="list-group-item">
+                        <h4 class="list-group-item-heading">REFERENCE</h4>
 
-                        <p><label>Abstract: </label> {{dif.DIF.Summary.Abstract}} </p>
-
-                        <p><label>Keywords: </label> {{gsnMetadata.features[0].properties.observed_properties.join()}}
-                        </p>
-
-                        <p><label>Creation Date: </label> {{dif.DIF.DIF_Creation_Date}} </p>
-
-                        <h4>COVERAGE</h4>
-
-                        <p><label>Spatial coverage: </label> {{dif.DIF.Spatial_Coverage.Southernmost_Latitude}},
-                            {{dif.DIF.Spatial_Coverage.Westernmost_Longitude}}</p>
-
-                        <p><label>Temporal coverage: </label> {{dif.DIF.Temporal_Coverage.Start_Date |
-                            date:"yyyy-MM-dd"}} &mdash; {{dif.DIF.Temporal_Coverage.Stop_Date | date:"yyyy-MM-dd"}}</p>
-
-                        <h4>LOCATION</h4>
-
-                        <p><label>Location: </label> {{dif.DIF.Location.Detailed_Location}}</p>
-
-                        <p><label>Elevation: </label> {{gsnMetadata.features[0].properties.elevation}} m</p>
-
-                        <p><label>Slope: </label> {{gsnMetadata.features[0].properties.slopeAngle}} &deg;</p>
-
-                        <p><label>Aspect: </label> {{gsnMetadata.features[0].properties.aspect}} &deg;</p>
-
-                        <h4>STRUCTURE</h4>
-
-                        <p><label>Parameters: </label></p>
-                        <ul>
-                            <li ng-repeat="parameter in gsnMetadata.features[0].properties.observed_properties">
-                                <i>{{parameter}}</i>: {{gsnMetadata.features[0].properties[parameter].join()}}
-                            </li>
-                        </ul>
-
-                        <h4>REFERENCE</h4>
+                        <p class="list-group-item-text">
 
                         <p><label>Citation: </label> {{dif.DIF.Data_Set_Citation.Dataset_Publisher}}.
                             {{dif.DIF.Data_Set_Citation.Dataset_Release_Date}}.
                             {{dif.DIF.Data_Set_Citation.Dataset_Title}}.
                             {{dif.DIF.Data_Set_Citation.Dataset_Publisher}}.
                             {{dif.DIF.Data_Set_Citation.Dataset_Release_Place}}.
-                            DOI:
+                            DOI: {{dif.DIF.Reference.DOI}}
                         </p>
 
-                        <p ng-if="hasWikiLink()"><label>Extra metadata: </label>
-                            <a ng-href="{{gsnMetadata.features[0].properties.wikiLink}}" target="_blank">Wiki</a></p>
 
-                    </div>
-
-                    <div ng-if="!hasDif() && hasGSNMetadata()">
-                        <h3>{{gsnMetadata.features[0].properties.sensorName}}</h3>
-                        <h4>BASIC INFORMATION</h4>
-
-                        <p><label>Keywords: </label> {{gsnMetadata.features[0].properties.observed_properties.join()}}
+                        <div ng-if="hasGSNMetadata()">
+                            <p ng-if="hasWikiLink()"><label>Extra metadata: </label>
+                                <a ng-href="{{gsnMetadata.features[0].properties.wikiLink}}" target="_blank">Wiki</a></p>
+                        </div>
                         </p>
+                    </a>
 
-                        <h4>COVERAGE</h4>
 
-                        <p><label>Spatial coverage: </label> {{gsnMetadata.features[0].geometry.coordinates[1]}},
-                            {{gsnMetadata.features[0].geometry.coordinates[0]}}</p>
-
-                        <p><label>Temporal coverage: </label> {{gsnMetadata.features[0].properties.fromDate}} &mdash;
-                            {{gsnMetadata.features[0].properties.untilDate}}</p>
-
-                        <h4>LOCATION</h4>
-
-                        <p><label>Elevation: </label> {{gsnMetadata.features[0].properties.elevation}} m</p>
-
-                        <p><label>Slope: </label> {{gsnMetadata.features[0].properties.slopeAngle}} &deg;</p>
-
-                        <p><label>Aspect: </label> {{gsnMetadata.features[0].properties.aspect}} &deg;</p>
-
-                        <h4>STRUCTURE</h4>
-
-                        <p><label>Parameters: </label></p>
-                        <ul>
-                            <li ng-repeat="parameter in gsnMetadata.features[0].properties.observed_properties">
-                                <i>{{parameter}}</i>: {{gsnMetadata.features[0].properties[parameter].join()}}
-                            </li>
-                        </ul>
-
-                        <h4>REFERENCE</h4>
-
-                        <p><label>Citation: </label></p>
-
-                        <p ng-if="hasWikiLink()"><label>Extra metadata: </label>
-                            <a ng-href="{{gsnMetadata.features[0].properties.wikiLink}}" target="_blank">Wiki</a></p>
-
-                    </div>
                 </div>
 
+                <div ng-if="!hasDif() && hasGSNMetadata()">
+                    <h3>{{gsnMetadata.features[0].properties.sensorName}}</h3>
+                    <h4>BASIC INFORMATION</h4>
+
+                    <p><label>Keywords: </label> {{gsnMetadata.features[0].properties.observed_properties.join()}}
+                    </p>
+
+                    <h4>COVERAGE</h4>
+
+                    <p><label>Spatial coverage: </label> {{gsnMetadata.features[0].geometry.coordinates[1]}},
+                        {{gsnMetadata.features[0].geometry.coordinates[0]}}</p>
+
+                    <p><label>Temporal coverage: </label> {{gsnMetadata.features[0].properties.fromDate}} &mdash;
+                        {{gsnMetadata.features[0].properties.untilDate}}</p>
+
+                    <h4>LOCATION</h4>
+
+                    <p><label>Elevation: </label> {{gsnMetadata.features[0].properties.elevation}} m</p>
+
+                    <p><label>Slope: </label> {{gsnMetadata.features[0].properties.slopeAngle}} &deg;</p>
+
+                    <p><label>Aspect: </label> {{gsnMetadata.features[0].properties.aspect}} &deg;</p>
+
+                    <h4>STRUCTURE</h4>
+
+                    <p><label>Parameters: </label></p>
+                    <ul>
+                        <li ng-repeat="parameter in gsnMetadata.features[0].properties.observed_properties">
+                            <i>{{parameter}}</i>: {{gsnMetadata.features[0].properties[parameter].join()}}
+                        </li>
+                    </ul>
+
+                    <h4>REFERENCE</h4>
+
+                    <p><label>Citation: </label></p>
+
+                    <p ng-if="hasWikiLink()"><label>Extra metadata: </label>
+                        <a ng-href="{{gsnMetadata.features[0].properties.wikiLink}}" target="_blank">Wiki</a></p>
+
+                </div>
             </div>
+
+        </div>
 
         <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
             <md-button class="md-raised"
@@ -111,7 +149,7 @@
                 Download
             </md-button>
             <md-button class="md-raised"
-                       ng-click="explore();" ng-show="hasDif() || hasGSNMetadata()">
+                       ng-click="explore();" ng-show="hasGSNMetadata()">
                 Explore
             </md-button>
 
