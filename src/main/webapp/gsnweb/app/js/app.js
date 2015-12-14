@@ -110,8 +110,8 @@ gsnWebApp.controller('TabsCtrl', ['$scope', '$rootScope', '$location', 'GsnTabs'
         $scope.tabs = GsnTabs;
         $scope.tabs.updateSelectedTab($location.$$path);
 
-        $rootScope.$on('$routeChangeSuccess', function (route, location) {
-            $scope.tabs.updateSelectedTab(location.$$route.originalPath);
+        $rootScope.$on('$routeChangeSuccess', function () {
+            $scope.tabs.updateSelectedTab($location.$$path);
         });
 
 

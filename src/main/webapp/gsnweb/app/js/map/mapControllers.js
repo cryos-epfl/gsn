@@ -85,6 +85,14 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
             $scope.parameters = _.uniq([].concat.apply([], _.values(parametersOfGroup)).sort(), true);
         }
 
+        function updateFilterParametersWithSelectedGroup(namesOfGroup, parametersOfGroup, selectedGroup) {
+            $scope.groups = ['All'].concat(_.keys(namesOfGroup).sort());
+            $scope.mapSensorNames = [].concat.apply([], namesOfGroup[selectedGroup].sort());
+            $scope.parameters = _.uniq([].concat.apply([], parametersOfGroup[selectedGroup]).sort(), true);
+        }
+
+
+
 
         $scope.updateGroup = function (item) {
             if (item === 'All') {
@@ -105,10 +113,14 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
         };
 
         function setFilterParameters() {
-            if ($scope.filter.onlyPublic) {
-                updateFilterParameters(namesOfGroupPublic, parametersOfGroupPublic);
+            if ($scope.filter.group.selected && $scope.filter.group.selected != 'All') {
+                updateFilterParametersWithSelectedGroup(namesOfGroup, parametersOfGroup, $scope.filter.group.selected);
             } else {
-                updateFilterParameters(namesOfGroup, parametersOfGroup);
+                if ($scope.filter.onlyPublic) {
+                    updateFilterParameters(namesOfGroupPublic, parametersOfGroupPublic);
+                } else {
+                    updateFilterParameters(namesOfGroup, parametersOfGroup);
+                }
             }
 
         }
