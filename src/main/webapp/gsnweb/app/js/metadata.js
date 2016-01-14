@@ -19,6 +19,7 @@ var metadata = angular.module("metadata", [])
                     return $scope.gsnMetadata.features[0].properties.wikiLink != undefined;
                 };
 
+
                 if ($scope.hasDif()) {
                     $scope.dif = JSON.parse(difMetadata.data.dif);
                 }
@@ -31,9 +32,80 @@ var metadata = angular.module("metadata", [])
                     $scope.errorMessage = difMetadata;
                 }
 
+                $scope.getCoordinates = function () {
+
+                    if ($scope.dif) {
+                        return [$scope.dif.DIF.Spatial_Coverage.Southernmost_Latitude,
+                            $scope.dif.DIF.Spatial_Coverage.Westernmost_Longitude];
+
+                    } else if ($scope.gsnMetadata) {
+                        return [$scope.gsnMetadata.features[0].geometry.coordinates[1],
+                            $scope.gsnMetadata.features[0].geometry.coordinates[0]];
+                    }
+                    return [];
+                };
+
+                $scope.coordinates = $scope.getCoordinates();
+
+                var getIcon = function () {
+
+                    if ( $scope.gsnMetadata && $scope.gsnMetadata.features[0].properties.isPublic === true) {
+                        return {
+                            iconUrl: 'img/green_.png',
+                            iconSize: [28, 28],
+                            iconAnchor: [12, 0]
+                        }
+                    }
+                    return {
+                        iconUrl: 'img/red_.png',
+                        iconSize: [28, 28],
+                        iconAnchor: [12, 0]
+                    }
+
+                };
+                if ($scope.coordinates.length == 2) {
+                    angular.extend($scope, {
+
+                        layers: {
+                            baselayers: {
+                                googleTerrain: {
+                                    name: 'Google Terrain',
+                                    layerType: 'TERRAIN',
+                                    type: 'google'
+                                },
+                                googleHybrid: {
+                                    name: 'Google Hybrid',
+                                    layerType: 'HYBRID',
+                                    type: 'google'
+                                },
+                                googleRoadmap: {
+                                    name: 'Google Streets',
+                                    layerType: 'ROADMAP',
+                                    type: 'google'
+                                }
+                            }
+                        },
+                        center: {
+                            lat: $scope.coordinates[0],
+                            lng: $scope.coordinates[1],
+                            zoom: 8
+                        },
+                        markers: {
+                            sensor: {
+                                lat: $scope.coordinates[0],
+                                lng: $scope.coordinates[1],
+                                focus: true,
+                                draggable: false,
+                                icon: getIcon()
+                            }
+                        }
+
+                    });
+                }
+
                 $scope.download = function () {
                     if (ftpLink.length > 0) {
-                        $window.location.href  = ftpLink;
+                        $window.location.href = ftpLink;
                     } else {
                         var url = "http://montblanc.slf.ch:22001/multidata?download_format=csv&field[0]=All&vs[0]="
                             + $scope.gsnMetadata.features[0].properties.sensorName;
@@ -52,7 +124,7 @@ var metadata = angular.module("metadata", [])
 
                 };
 
-                function getFTPLink(){
+                function getFTPLink() {
                     if ($scope.hasDif()) {
                         var urls = $scope.dif.DIF.Related_URL;
                         for (var i = 0; i < urls.length; i++) {
@@ -65,7 +137,7 @@ var metadata = angular.module("metadata", [])
                     return "";
                 }
 
-               var ftpLink = getFTPLink();
+                var ftpLink = getFTPLink();
 
             }])
 

@@ -316,8 +316,8 @@ gsnDataServices.factory('ChartConfigService', ['$timeout', 'GsnResult',
                         y: 55,
                         floating: true,
                         backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
-                    }
-                    ,
+                    },
+
                     func: function (chart) {
                         $timeout(function () {
                             chart.reflow();

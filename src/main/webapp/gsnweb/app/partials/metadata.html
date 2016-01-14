@@ -8,93 +8,86 @@
                     {{errorMessage}}
                 </div>
 
+                <div class="btn-group-horizontal" role="group">
+                    <button class="btn btn-info btn-xs"
+                            ng-click="download();" ng-show="hasDif() || hasGSNMetadata()">
+                        <img src="img/download.png" width="20"/>
+                        Download
+                    </button>
+                    <button class="btn btn-info btn-xs"
+                            ng-click="explore();" ng-show="hasGSNMetadata()">
+                        <img src="img/graphBW.png" width="20"/>
+                        Explore
+                    </button>
+
+                </div>
+
                 <div ng-if="hasDif()">
 
-                    <h3>{{dif.DIF.Entry_Title}}</h3>
+                    <h2>{{dif.DIF.Entry_Title}}</h2>
 
-                    <div class="list-group">
-                        <a class="list-group-item">
-                            <h4 class="list-group-item-heading">BASIC INFORMATION</h4>
+                    <h3 id="citation" class="page-header">Citation</h3>
+                    {{dif.DIF.Data_Set_Citation.Dataset_Creator}}.
+                    {{dif.DIF.Data_Set_Citation.Dataset_Release_Date}}.
+                    {{dif.DIF.Data_Set_Citation.Dataset_Title}}.
+                    {{dif.DIF.Data_Set_Citation.Dataset_Publisher}}.
+                    {{dif.DIF.Data_Set_Citation.Dataset_Release_Place}}.
+                    DOI: {{dif.DIF.Reference.DOI}}
+                    <!--<span class="label label-info">Open Source</span>-->
 
-                            <p class="list-group-item-text">
+                    <h3 id="summary" class="page-header">Summary</h3>
+
+                    <div class="row">
+                        <div class="col-md-8" style="background-color:white; border: none">
 
                             <p><label>Abstract: </label> {{dif.DIF.Summary.Abstract}} </p>
 
-                            <div ng-if="hasGSNMetadata()"><p><label>Keywords: </label>
+                            <div ng-if="hasGSNMetadata()"><label>Keywords: </label>
                                 {{gsnMetadata.features[0].properties.observed_properties.join()}}
-                            </p></div>
+                           </div> <br>
 
-                            <p><label>Creation Date: </label> {{dif.DIF.DIF_Creation_Date}} </p>
+                            <label>Creation Date: </label> {{dif.DIF.DIF_Creation_Date}} <br>
 
-                            </p>
-                        </a>
-                        <a  class="list-group-item">
-                            <h4 class="list-group-item-heading">COVERAGE</h4>
-
-                            <p class="list-group-item-text">
-
-                            <p><label>Spatial coverage: </label> {{dif.DIF.Spatial_Coverage.Southernmost_Latitude}},
-                                {{dif.DIF.Spatial_Coverage.Westernmost_Longitude}}</p>
-
-                            <p><label>Temporal coverage: </label> {{dif.DIF.Temporal_Coverage.Start_Date |
+                            <label>Temporal coverage: </label> {{dif.DIF.Temporal_Coverage.Start_Date |
                                 date:"yyyy-MM-dd"}} &mdash; {{dif.DIF.Temporal_Coverage.Stop_Date | date:"yyyy-MM-dd"}}
-                            </p>
-                            </p>
-                        </a>
-                        <a class="list-group-item">
-                            <h4 class="list-group-item-heading">LOCATION</h4>
+                            <br>
 
-                            <p class="list-group-item-text">
-                            <p><label>Geographical Location: </label> {{dif.DIF.Location.Detailed_Location}}</p>
-                                <div ng-if="hasGSNMetadata()" class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h2 class="panel-title">Computed Topography</h2>
-                                    </div>
-                                    <div class="panel-body">
-                                        <label>Elevation: </label> {{gsnMetadata.features[0].properties.elevation}} m;
-                                        <label>Slope: </label> {{gsnMetadata.features[0].properties.slopeAngle}} &deg;;
-                                        <label>Aspect: </label> {{gsnMetadata.features[0].properties.aspect}} &deg;
-                                    </div>
-                                </div>
+                            <h3 class="page-header">Location</h3>
 
-                            </p>
-                        </a>
-                        <a class="list-group-item">
-                            <h4 class="list-group-item-heading">STRUCTURE</h4>
-                            <p class="list-group-item-text">
-                            <div ng-if="hasGSNMetadata()" class="panel panel-default">
-                            <p><label>Parameters: </label></p>
-                            <ul>
-                                <li ng-repeat="parameter in gsnMetadata.features[0].properties.observed_properties">
-                                    <i>{{parameter}}</i>: {{gsnMetadata.features[0].properties[parameter].join()}}
-                                </li>
-                            </ul>
+                            <label>Geographical Location: </label> {{dif.DIF.Location.Detailed_Location}}<br>
+
+                            <label>Coordinates: </label> {{dif.DIF.Spatial_Coverage.Southernmost_Latitude}},
+                                {{dif.DIF.Spatial_Coverage.Westernmost_Longitude}}
+
+                            <div ng-if="hasGSNMetadata()">
+                                <label>Computed Topography: </label>
+                                <i>Elevation </i> {{gsnMetadata.features[0].properties.elevation}} m;
+                                <i>Slope </i> {{gsnMetadata.features[0].properties.slopeAngle}} &deg;;
+                                <i>Aspect </i> {{gsnMetadata.features[0].properties.aspect}} &deg;
                             </div>
 
-                            </p>
-                        </a>
+                        </div>
+
+                        <div class="col-md-4" style="background-color:white; border: none">
+                            <leaflet center="center" layers="layers" markers="markers" height="320px" width="320px"></leaflet>
+                        </div>
+
+                    </div>
+                    <div ng-if="hasGSNMetadata()">
+                        <h3 class="page-header">Parameters</h3>
+                        <ul>
+                            <li ng-repeat="parameter in gsnMetadata.features[0].properties.observed_properties">
+                                <i>{{parameter}}</i>: {{gsnMetadata.features[0].properties[parameter].join()}}
+                            </li>
+                        </ul>
                     </div>
 
-                    <a class="list-group-item">
-                        <h4 class="list-group-item-heading">REFERENCE</h4>
-
-                        <p class="list-group-item-text">
-
-                        <p><label>Citation: </label> {{dif.DIF.Data_Set_Citation.Dataset_Publisher}}.
-                            {{dif.DIF.Data_Set_Citation.Dataset_Release_Date}}.
-                            {{dif.DIF.Data_Set_Citation.Dataset_Title}}.
-                            {{dif.DIF.Data_Set_Citation.Dataset_Publisher}}.
-                            {{dif.DIF.Data_Set_Citation.Dataset_Release_Place}}.
-                            DOI: {{dif.DIF.Reference.DOI}}
+                    <div ng-if="hasGSNMetadata()">
+                        <h3>Links</h3>
+                        <p ng-if="hasWikiLink()"><label>Additional metadata: </label>
+                            <a ng-href="{{gsnMetadata.features[0].properties.wikiLink}}" target="_blank">Wiki</a>
                         </p>
-
-
-                        <div ng-if="hasGSNMetadata()">
-                            <p ng-if="hasWikiLink()"><label>Extra metadata: </label>
-                                <a ng-href="{{gsnMetadata.features[0].properties.wikiLink}}" target="_blank">Wiki</a></p>
-                        </div>
-                        </p>
-                    </a>
+                    </div>
 
 
                 </div>
@@ -130,29 +123,17 @@
                             <i>{{parameter}}</i>: {{gsnMetadata.features[0].properties[parameter].join()}}
                         </li>
                     </ul>
+                    <h3>Links</h3>
+                    <p ng-if="hasWikiLink()"><label>Additional metadata: </label>
+                        <a ng-href="{{gsnMetadata.features[0].properties.wikiLink}}" target="_blank">Wiki</a>
+                    </p>
 
-                    <h4>REFERENCE</h4>
-
-                    <p><label>Citation: </label></p>
-
-                    <p ng-if="hasWikiLink()"><label>Extra metadata: </label>
-                        <a ng-href="{{gsnMetadata.features[0].properties.wikiLink}}" target="_blank">Wiki</a></p>
-
+                    <div class="col-md-4" style="background-color:white; border: none">
+                        <leaflet center="center" layers="layers" markers="markers" height="320px" width="320px"></leaflet>
+                    </div>
                 </div>
+
             </div>
-
-        </div>
-
-        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-            <md-button class="md-raised"
-                       ng-click="download();" ng-show="hasDif() || hasGSNMetadata()">
-                Download
-            </md-button>
-            <md-button class="md-raised"
-                       ng-click="explore();" ng-show="hasGSNMetadata()">
-                Explore
-            </md-button>
-
         </div>
 
     </section>
