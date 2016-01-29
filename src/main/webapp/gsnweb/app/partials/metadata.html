@@ -82,6 +82,16 @@
                         </ul>
                     </div>
 
+                    <div>
+                        <h3 class="page-header">Contacts</h3>
+
+                            <div ng-repeat="contact in dif.DIF.Personnel">
+                                <label>{{contact.Role}}</label>: {{contact.First_Name}} {{contact.Last_Name}}.
+                                <i>e-mail:</i> {{contact.Email}} <i>phone:</i>{{contact.Phone}}
+                            </div>
+
+                    </div>
+
                     <div ng-if="hasGSNMetadata()">
                         <h3>Links</h3>
                         <p ng-if="hasWikiLink()"><label>Additional metadata: </label>
