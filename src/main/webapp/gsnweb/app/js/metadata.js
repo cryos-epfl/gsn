@@ -139,7 +139,7 @@ var metadata = angular.module("metadata", [])
 
                 var ftpLink = getFTPLink();
 
-                $scope.buildReferences = function () {
+                function buildReferences () {
                     var references = [];
                     if ($scope.dif.DIF.Reference) {
                         if (Object.prototype.toString.call($scope.dif.DIF.Reference) != '[object Array]') {
@@ -182,6 +182,8 @@ var metadata = angular.module("metadata", [])
                     return references;
 
                 };
+
+                $scope.references = buildReferences();
 
 
             }])

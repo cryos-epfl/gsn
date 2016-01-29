@@ -92,6 +92,20 @@
 
                     </div>
 
+                    <div ng-if="references.length > 0">
+                        <h3 class="page-header">References</h3>
+
+                        <ol>
+                            <li ng-repeat="reference in references">
+                                {{reference}}
+                            </li>
+                        </ol>
+
+                    </div>
+
+
+                    <!--<dif-reference reference="{{buildReferences()}}"></dif-reference>-->
+
                     <div ng-if="hasGSNMetadata()">
                         <h3>Links</h3>
                         <p ng-if="hasWikiLink()"><label>Additional metadata: </label>
