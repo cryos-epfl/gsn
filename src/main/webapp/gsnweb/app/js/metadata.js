@@ -139,7 +139,64 @@ var metadata = angular.module("metadata", [])
 
                 var ftpLink = getFTPLink();
 
+                $scope.buildReferences = function () {
+                    var references = [];
+                    if ($scope.dif.DIF.Reference) {
+                        if (Object.prototype.toString.call($scope.dif.DIF.Reference) != '[object Array]') {
+                            $scope.dif.DIF.Reference = [$scope.dif.DIF.Reference];
+                        }
+
+                        for (var i = 0; i < $scope.dif.DIF.Reference.length; i++) {
+                            var referenceString = '';
+                            var ref = $scope.dif.DIF.Reference[i];
+                            if (ref.Author) {
+                                referenceString += ref.Author + '. ';
+                            }
+                            if (ref.Publication_date) {
+                                referenceString += ref.Publication_date + '. ';
+                            }
+                            if (ref.Title) {
+                                referenceString += ref.Title + '. ';
+                            }
+                            if (ref.Series) {
+                                referenceString += ref.Series + ', ';
+                            }
+                            if (ref.Volume) {
+                                referenceString += ref.Volume + ', ';
+                            }
+                            if (ref.Issue) {
+                                referenceString += ref.Issue + ', ';
+                            }
+
+                            if (ref.Pages) {
+                                referenceString += ref.Pages + '. ';
+                            }
+
+                            if (ref.DOI) {
+                                referenceString += ref.DOI + '. ';
+                            }
+
+                            references.push(referenceString);
+                        }
+                    }
+                    return references;
+
+                };
+
+
             }])
+        //.directive('difReference', function(){
+        //
+        //    return {
+        //        scope: {
+        //            reference: '=reference'
+        //
+        //        },
+        //        template: '{{reference}}'
+        //    };
+        //})
+
+
 
         .factory('DifMetadataLoad', ['$http', '$q', '$route', 'FilterParameters',
             function ($http, $q, $route, FilterParameters) {
