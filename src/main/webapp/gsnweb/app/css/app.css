@@ -9,7 +9,6 @@
 
 
 
-
 .tab-content > .tab-pane,
 .pill-content > .pill-pane {
   display: block;     /* undo display:none          */
@@ -41,98 +40,50 @@ h4 {
   border: 1px solid rgba(86,61,124,.2);
 }
 
-hr {
-  margin-top: 40px;
-  margin-bottom: 40px;
+/*hr {*/
+  /*margin-top: 40px;*/
+  /*margin-bottom: 40px;*/
+/*}*/
+
+
+* {
+  margin-top: 0px;
 }
-
-
 
 body {
   /*padding-top: 20px;*/
-  padding: 25px;
-  margin-top: 20px;
+  /*padding: 25px;*/
+  margin-top: 0px  !important;
 }
 
-.phones {
-  list-style: none;
-}
 
-.thumb {
-  float: left;
-  margin: -0.5em 1em 1.5em 0;
-  padding-bottom: 1em;
-  height: 100px;
-  width: 100px;
-}
-
-.phones li {
-  clear: both;
-  height: 115px;
-  padding-top: 15px;
-}
-
-/** Detail View **/
-img.phone {
-  float: left;
-  border: 1px solid black;
-  margin-right: 3em;
-  margin-bottom: 2em;
-  background-color: white;
-  padding: 2em;
-  height: 400px;
-  width: 400px;
-}
-
-ul.phone-thumbs {
-  margin: 0;
-  list-style: none;
-}
-
-ul.phone-thumbs li {
-  border: 1px solid black;
-  display: inline-block;
-  margin: 1em;
-  background-color: white;
-}
-
-ul.phone-thumbs img {
-  height: 100px;
-  width: 100px;
-  padding: 1em;
-}
-
-ul.specs {
-  clear: both;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-ul.specs > li{
-  display: inline-block;
-  width: 200px;
-  vertical-align: top;
-}
-
-ul.specs > li > span{
-  font-weight: bold;
-  font-size: 1.2em;
-}
 
 ul.specs dt {
   font-weight: bold;
 }
 
+.osper_banner {
+  width:100%;
+  height:20%;
+  background-image:url('../img/alps_small.jpg');
+  background-size:cover;
+}
+
+.osper_banner img {
+  width:100%;
+}
+
+
 #header h2 {
-  border-bottom: 1px solid gray;
+  /*border-bottom: 1px solid gray;*/
   padding: 14px;
-  padding-top: 2px;
+  /*padding-top: 2px;*/
   padding-right: 20px;
   padding-bottom: 18px;
   padding-left: 20px;
   text-align: right;
-  color: #3949AB;
+  color: #092193;
+  /*background-image: url("img/alps_banner.jpg");*/
 }
 #header small {
   color: #3949AB;
