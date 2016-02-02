@@ -146,41 +146,14 @@ var metadata = angular.module("metadata", [])
                             $scope.dif.DIF.Reference = [$scope.dif.DIF.Reference];
                         }
 
-                        for (var i = 0; i < $scope.dif.DIF.Reference.length; i++) {
-                            var referenceString = '';
-                            var ref = $scope.dif.DIF.Reference[i];
-                            if (ref.Author) {
-                                referenceString += ref.Author + '. ';
-                            }
-                            if (ref.Publication_date) {
-                                referenceString += ref.Publication_date + '. ';
-                            }
-                            if (ref.Title) {
-                                referenceString += ref.Title + '. ';
-                            }
-                            if (ref.Series) {
-                                referenceString += ref.Series + ', ';
-                            }
-                            if (ref.Volume) {
-                                referenceString += ref.Volume + ', ';
-                            }
-                            if (ref.Issue) {
-                                referenceString += ref.Issue + ', ';
-                            }
 
-                            if (ref.Pages) {
-                                referenceString += ref.Pages + '. ';
-                            }
-
-                            if (ref.DOI) {
-                                referenceString += ref.DOI + '. ';
-                            }
-
-                            references.push(referenceString);
-                        }
                     }
-                    return references;
+                    return  $scope.dif.DIF.Reference;
 
+                };
+
+                $scope.referenceHasValue = function(reference, value) {
+                    return (typeof reference[value] !== 'undefined');
                 };
 
                 $scope.references = buildReferences();
@@ -194,7 +167,7 @@ var metadata = angular.module("metadata", [])
         //            reference: '=reference'
         //
         //        },
-        //        template: '{{reference}}'
+        //        templateUrl: 'partials/dif-reference.html'
         //    };
         //})
 

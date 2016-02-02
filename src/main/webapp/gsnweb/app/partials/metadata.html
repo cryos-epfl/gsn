@@ -27,13 +27,28 @@
                     <h2>{{dif.DIF.Entry_Title}}</h2>
 
                     <h3 id="citation" class="page-header">Citation</h3>
-                    {{dif.DIF.Data_Set_Citation.Dataset_Creator}}.
-                    {{dif.DIF.Data_Set_Citation.Dataset_Release_Date}}.
-                    {{dif.DIF.Data_Set_Citation.Dataset_Title}}.
-                    {{dif.DIF.Data_Set_Citation.Dataset_Publisher}}.
-                    {{dif.DIF.Data_Set_Citation.Dataset_Release_Place}}.
-                    DOI: {{dif.DIF.Data_Set_Citation.Dataset_DOI}}
+                    <!--{{dif.DIF.Data_Set_Citation.Dataset_Creator}}.-->
+                    <!--{{dif.DIF.Data_Set_Citation.Dataset_Release_Date}}.-->
+                    <!--{{dif.DIF.Data_Set_Citation.Dataset_Title}}.-->
+                    <!--{{dif.DIF.Data_Set_Citation.Dataset_Publisher}}.-->
+                    <!--{{dif.DIF.Data_Set_Citation.Dataset_Release_Place}}.-->
+                    <!--DOI: {{dif.DIF.Data_Set_Citation.Dataset_DOI}}-->
                     <!--<span class="label label-info">Open Source</span>-->
+
+
+                    <span class="inline" ng-show="referenceHasValue(dif.DIF.Data_Set_Citation, 'Dataset_Creator')"> {{dif.DIF.Data_Set_Citation.Dataset_Creator}}. </span>
+                    <span class="inline" ng-show="referenceHasValue(dif.DIF.Data_Set_Citation, 'Dataset_Release_Date')"> {{dif.DIF.Data_Set_Citation.Dataset_Release_Date}}. </span>
+                    <b>
+                        <span class="inline" ng-show="referenceHasValue(dif.DIF.Data_Set_Citation, 'Dataset_Title')"> {{dif.DIF.Data_Set_Citation.Dataset_Title}}. </span>
+                    </b>
+                    <span class="inline"
+                             ng-show="referenceHasValue(dif.DIF.Data_Set_Citation, 'Dataset_Publisher')"> {{dif.DIF.Data_Set_Citation.Dataset_Publisher}}. </span>
+
+
+                    <span class="inline" ng-show="referenceHasValue(dif.DIF.Data_Set_Citation, 'Dataset_Release_Place')"> {{dif.DIF.Data_Set_Citation.Dataset_Release_Place}}. </span>
+                                <span class="inline" ng-if="referenceHasValue(dif.DIF.Data_Set_Citation, 'Dataset_DOI')">
+                                   {{dif.DIF.Data_Set_Citation.Dataset_DOI}}.
+                                </span>
 
                     <h3 id="summary" class="page-header">Summary</h3>
 
@@ -44,12 +59,13 @@
 
                             <div ng-if="hasGSNMetadata()"><label>Keywords: </label>
                                 {{gsnMetadata.features[0].properties.observed_properties.join()}}
-                           </div> <br>
+                            </div>
+                            <br>
 
                             <label>Creation Date: </label> {{dif.DIF.DIF_Creation_Date}} <br>
 
                             <label>Temporal coverage: </label> {{dif.DIF.Temporal_Coverage.Start_Date |
-                                date:"yyyy-MM-dd"}} &mdash; {{dif.DIF.Temporal_Coverage.Stop_Date | date:"yyyy-MM-dd"}}
+                            date:"yyyy-MM-dd"}} &mdash; {{dif.DIF.Temporal_Coverage.Stop_Date | date:"yyyy-MM-dd"}}
                             <br>
 
                             <h3 class="page-header">Location</h3>
@@ -57,7 +73,7 @@
                             <label>Geographical Location: </label> {{dif.DIF.Location.Detailed_Location}}<br>
 
                             <label>Coordinates: </label> {{dif.DIF.Spatial_Coverage.Southernmost_Latitude}},
-                                {{dif.DIF.Spatial_Coverage.Westernmost_Longitude}}
+                            {{dif.DIF.Spatial_Coverage.Westernmost_Longitude}}
 
                             <div ng-if="hasGSNMetadata()">
                                 <label>Computed Topography: </label>
@@ -69,7 +85,8 @@
                         </div>
 
                         <div class="col-md-4" style="background-color:white; border: none">
-                            <leaflet center="center" layers="layers" markers="markers" height="320px" width="320px"></leaflet>
+                            <leaflet center="center" layers="layers" markers="markers" height="320px"
+                                     width="320px"></leaflet>
                         </div>
 
                     </div>
@@ -85,10 +102,10 @@
                     <div>
                         <h3 class="page-header">Contacts</h3>
 
-                            <div ng-repeat="contact in dif.DIF.Personnel">
-                                <label>{{contact.Role}}</label>: {{contact.First_Name}} {{contact.Last_Name}}.
-                                <i>e-mail:</i> {{contact.Email}} <i>phone:</i>{{contact.Phone}}
-                            </div>
+                        <div ng-repeat="contact in dif.DIF.Personnel">
+                            <label>{{contact.Role}}</label>: {{contact.First_Name}} {{contact.Last_Name}}.
+                            <i>e-mail:</i> {{contact.Email}}
+                        </div>
 
                     </div>
 
@@ -97,7 +114,21 @@
 
                         <ol>
                             <li ng-repeat="reference in references">
-                                {{reference}}
+                                <!--<dif-reference reference="reference"></dif-reference>-->
+                                <span class="inline" ng-show="referenceHasValue(reference, 'Author')"> {{reference.Author}}. </span>
+                                <span class="inline" ng-show="referenceHasValue(reference, 'Publication_Date')"> {{reference.Publication_Date}}. </span>
+                                <span class="inline" ng-show="referenceHasValue(reference, 'Title')"> {{reference.Title}}. </span>
+                                <i><span class="inline" ng-show="referenceHasValue(reference, 'Series')"> {{reference.Series}}. </span></i>
+
+
+                                <span class="inline" ng-show="referenceHasValue(reference, 'Volume')"> {{reference.Volume}}. </span>
+                                <span class="inline" ng-show="referenceHasValue(reference, 'Issue')"> {{reference.Issue}}. </span>
+                                <span class="inline"
+                                      ng-if="referenceHasValue(reference, 'Pages')"> {{reference.Pages}}. </span>
+                                <span class="inline" ng-if="referenceHasValue(reference, 'DOI')">
+                                    <a ng-href="{{reference.Online_Resource}}" target="_blank">{{reference.DOI}}</a>.
+                                </span>
+
                             </li>
                         </ol>
 
@@ -108,6 +139,7 @@
 
                     <div ng-if="hasGSNMetadata()">
                         <h3>Links</h3>
+
                         <p ng-if="hasWikiLink()"><label>Additional metadata: </label>
                             <a ng-href="{{gsnMetadata.features[0].properties.wikiLink}}" target="_blank">Wiki</a>
                         </p>
@@ -148,12 +180,14 @@
                         </li>
                     </ul>
                     <h3>Links</h3>
+
                     <p ng-if="hasWikiLink()"><label>Additional metadata: </label>
                         <a ng-href="{{gsnMetadata.features[0].properties.wikiLink}}" target="_blank">Wiki</a>
                     </p>
 
                     <div class="col-md-4" style="background-color:white; border: none">
-                        <leaflet center="center" layers="layers" markers="markers" height="320px" width="320px"></leaflet>
+                        <leaflet center="center" layers="layers" markers="markers" height="320px"
+                                 width="320px"></leaflet>
                     </div>
                 </div>
 
