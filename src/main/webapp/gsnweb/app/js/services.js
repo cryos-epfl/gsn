@@ -297,6 +297,9 @@ gsnDataServices.factory('ChartConfigService', ['$timeout', 'GsnResult',
                         navigator: {
                             enabled: true
                         }
+                        //global: {
+                        //    timezoneOffset: 60
+                        //}
                     },
                     title: {
                         text: vs_name
@@ -308,15 +311,16 @@ gsnDataServices.factory('ChartConfigService', ['$timeout', 'GsnResult',
                         shared: true
                     },
                     turboThreshold: 2000,
-                    legend: {
-                        layout: 'vertical',
-                        align: 'left',
-                        x: 80,
-                        verticalAlign: 'top',
-                        y: 55,
-                        floating: true,
-                        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
-                    },
+
+                    //legend: {
+                    //    layout: 'horizontal',
+                    //    align: 'center',
+                    //    x: 80,
+                    //    verticalAlign: 'top',
+                    //    y: 55,
+                    //    floating: false,
+                    //    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                    //},
 
                     func: function (chart) {
                         $timeout(function () {

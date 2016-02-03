@@ -113,7 +113,7 @@
                         <h3 class="page-header">References</h3>
 
                         <ol>
-                            <li ng-repeat="reference in references">
+                            <li ng-repeat="reference in buildReferences()">
                                 <!--<dif-reference reference="reference"></dif-reference>-->
                                 <span class="inline" ng-show="referenceHasValue(reference, 'Author')"> {{reference.Author}}. </span>
                                 <span class="inline" ng-show="referenceHasValue(reference, 'Publication_Date')"> {{reference.Publication_Date}}. </span>

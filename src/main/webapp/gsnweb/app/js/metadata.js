@@ -139,8 +139,7 @@ var metadata = angular.module("metadata", [])
 
                 var ftpLink = getFTPLink();
 
-                function buildReferences () {
-                    var references = [];
+                $scope.buildReferences = function () {
                     if ($scope.dif.DIF.Reference) {
                         if (Object.prototype.toString.call($scope.dif.DIF.Reference) != '[object Array]') {
                             $scope.dif.DIF.Reference = [$scope.dif.DIF.Reference];
@@ -156,21 +155,7 @@ var metadata = angular.module("metadata", [])
                     return (typeof reference[value] !== 'undefined');
                 };
 
-                $scope.references = buildReferences();
-
-
             }])
-        //.directive('difReference', function(){
-        //
-        //    return {
-        //        scope: {
-        //            reference: '=reference'
-        //
-        //        },
-        //        templateUrl: 'partials/dif-reference.html'
-        //    };
-        //})
-
 
 
         .factory('DifMetadataLoad', ['$http', '$q', '$route', 'FilterParameters',
