@@ -152,7 +152,7 @@ var metadata = angular.module("metadata", [])
                 };
 
                 $scope.referenceHasValue = function(reference, value) {
-                    return (typeof reference[value] !== 'undefined');
+                    return (typeof reference[value] !== 'undefined' && reference[value].length >0);
                 };
 
             }])

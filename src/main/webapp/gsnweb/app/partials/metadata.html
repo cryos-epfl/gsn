@@ -94,7 +94,7 @@
                         <h3 class="page-header">Parameters</h3>
                         <ul>
                             <li ng-repeat="parameter in gsnMetadata.features[0].properties.observed_properties">
-                                <i>{{parameter}}</i>: {{gsnMetadata.features[0].properties[parameter].join()}}
+                                <i>{{parameter}}</i>: {{gsnMetadata.features[0].properties[parameter].join(", ")}}
                             </li>
                         </ul>
                     </div>
