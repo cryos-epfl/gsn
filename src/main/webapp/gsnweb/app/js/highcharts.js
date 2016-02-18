@@ -23,6 +23,14 @@ angular.module('hcControllers', [])
             });
 
 
+            Highcharts.setOptions({
+                global: {
+                    useUTC: false,
+                    timezoneOffset: 60
+                }
+
+            });
+
             $scope.$on('handleBroadcast', function () {
 
                 dataProcessingService.resetPromise();

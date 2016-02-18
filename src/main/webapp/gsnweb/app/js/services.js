@@ -297,9 +297,7 @@ gsnDataServices.factory('ChartConfigService', ['$timeout', 'GsnResult',
                         navigator: {
                             enabled: true
                         }
-                        //global: {
-                        //    timezoneOffset: 60
-                        //}
+
                     },
                     title: {
                         text: vs_name
