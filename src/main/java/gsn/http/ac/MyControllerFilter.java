@@ -67,6 +67,10 @@ public class MyControllerFilter implements Filter {
             HttpServletRequest req = (HttpServletRequest) request;
             HttpServletResponse res = (HttpServletResponse) response;
 
+            res.addHeader("Access-Control-Allow-Origin", "http://www.osper.ch");
+            res.addHeader("Access-Control-Allow-Methods", "GET");
+            res.addHeader("Access-Control-Allow-Headers", "Content-Type");
+
             if (logging)
                 if ("/multidata".equals(req.getServletPath()))
                     logger.warn(req.getRemoteAddr() + " => multidata\n" + listRequestParameters(req));
