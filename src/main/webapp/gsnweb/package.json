@@ -1,10 +1,9 @@
 {
-  "version": "0.0.0",
+  "version": "0.1",
   "private": true,
-  "name": "angular-phonecat",
-  "description": "A tutorial application for AngularJS",
+  "name": "osper",
+  "description": "Web application for OSPER project",
   "repository": "https://github.com/angular/angular-phonecat",
-  "license": "MIT",
   "devDependencies": {
     "karma": "^0.12.16",
     "karma-chrome-launcher": "^0.1.4",
@@ -19,7 +18,7 @@
     "postinstall": "bower install",
 
     "prestart": "npm install",
-    "start": "http-server -a 0.0.0.0 -p 8000",
+    "start": "http-server -a 0.0.0.0 -p 8083",
 
     "pretest": "npm install",
     "test": "node node_modules/karma/bin/karma start test/karma.conf.js",
