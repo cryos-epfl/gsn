@@ -71,15 +71,35 @@
                 <rzslider rz-slider-model="filter.aspect.min" rz-slider-high="filter.aspect.max"
                           rz-slider-floor="filter.aspect.floor" rz-slider-ceil="filter.aspect.ceil"></rzslider>
             </div>
+            <!--<div>-->
+                <!--<label>Bounding Box</label>-->
+                <!--<label>SE:</label>{{bounds.southWest.lat}}, {{bounds.southWest.lng}}-->
+                <!--&lt;!&ndash;<h2>South west</h2>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;Lat : <input type="number"  ng-model="bounds.southWest.lat" />&ndash;&gt;-->
+                <!--&lt;!&ndash;Lng : <input type="number" step="any" ng-model="bounds.southWest.lng" />&ndash;&gt;-->
+
+
+                <!--&lt;!&ndash;<h2>North east</h2>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;Lat : <input type="number" step="any" ng-model="bounds.northEast.lat" />&ndash;&gt;-->
+                    <!--&lt;!&ndash;Lng : <input type="number" step="any" ng-model="bounds.northEast.lng" />&ndash;&gt;-->
+
+            <!--</div>-->
+
 
 
         </div>
         <md-content flex layout-padding>
             <div layout="column" layout-fill layout-align="top center">
-                <leaflet center="center" layers="layers" height="480px"></leaflet>
+                <leaflet bounds="filter.bounds"  center="center" layers="layers" height="470px"></leaflet>
 
                 <!--<leaflet  markers="markers" event-broadcast="events" center="center" layers="layers" height="480px"></leaflet>-->
 
+            </div>
+            <div>
+                <label>South West:</label>{{getBoundsSouthWest().lat | number:4}}, {{getBoundsSouthWest().lng | number:4}}
+                <label>North East:</label>{{getBoundsNorthEast().lat | number:4}}, {{getBoundsNorthEast().lng | number:4}}
             </div>
         </md-content>
 

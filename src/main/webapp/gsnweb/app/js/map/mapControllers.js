@@ -77,7 +77,12 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
         setFilterParameters();
         $scope.currentMarkers = L.markerClusterGroup();
 
-        updateMarkers();
+
+        updateMarkers(true);
+
+        leafletData.getMap().then(function (map) {
+            L.control.scale({imperial: false}).addTo(map);
+        });
 
         function updateFilterParameters(namesOfGroup, parametersOfGroup) {
             $scope.groups = ['All'].concat(_.keys(namesOfGroup).sort());
@@ -140,7 +145,7 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
         };
 
 
-        function updateMarkers() {
+        function updateMarkers(keepBound) {
             //var markers = L.markerClusterGroup();
 
             $scope.filter.updateUrl();
@@ -181,16 +186,37 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
 
             $scope.currentMarkers.clearLayers();
             $scope.currentMarkers.addLayer(geoJsonLayer);
+
+            //var bounds = $scope.currentMarkers.getBounds();
+
+            if(!_.isEmpty($scope.filter.bounds) && keepBound) {
+                $scope.filter.bounds = L.latLngBounds($scope.filter.bounds.southWest, $scope.filter.bounds.northEast);
+
+            } else {
+                $scope.filter.bounds =  $scope.currentMarkers.getBounds();;
+            }
+
+
+
             leafletData.getMap().then(function (map) {
                 //map.removeLayer($scope.currentMarkers);
                 map.addLayer($scope.currentMarkers);
                 if ($scope.sensorsCount > 0) {
-                    map.fitBounds($scope.currentMarkers.getBounds());
+                    map.fitBounds($scope.filter.bounds);
                 }
             });
 
         }
 
+        $scope.getBoundsSouthWest = function() {
+            if ($scope.filter.bounds.southWest) return $scope.filter.bounds.southWest;
+            return $scope.filter.bounds._southWest;
+        };
+
+        $scope.getBoundsNorthEast = function() {
+            if ($scope.filter.bounds.northEast) return $scope.filter.bounds.northEast;
+            return $scope.filter.bounds._northEast;
+        };
 
         function filterSensor(feature) {
             var result = true;
@@ -324,6 +350,7 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
                 newScope.elevation = feature.properties.elevation;
                 newScope.angle = feature.properties.slopeAngle;
                 newScope.aspect = feature.properties.aspect;
+                newScope.coordinates = feature.geometry.coordinates[1] + ', ' + feature.geometry.coordinates[0];
 
                 var linkFunction = $compile(html)(newScope);
 
@@ -345,6 +372,17 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
             FilterParameters.reset();
             FilterParameters.sensors = [feature.properties.sensorName];
             FilterParameters.fields = getParametersForLink(feature)
+            FilterParameters.resetPromise();
+            $location.path('/plot')
+            FilterParameters.updateURLFromMap($location);
+
+        };
+
+        $scope.addToPlot = function (feature) {
+            console.log('ADD TO PLOT ' + feature.properties.sensorName);
+            //FilterParameters.reset();
+            FilterParameters.sensors.push(feature.properties.sensorName);
+            FilterParameters.fields.push(getParametersForLink(feature));
             FilterParameters.resetPromise();
             $location.path('/plot')
             FilterParameters.updateURLFromMap($location);
@@ -491,7 +529,9 @@ gsnMap.factory('MapFilterParameters', ['$location', '$filter', '$route',
                 max: 360,
                 floor: 0,
                 ceil: 360
-            }
+            };
+
+            this.bounds = {}
 
         }
 
