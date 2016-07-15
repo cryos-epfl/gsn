@@ -470,12 +470,13 @@ sensorData.factory('FilterParameters', ['$routeParams', '$filter', 'Aggregation'
                 this.promise = null;
             },
 
+            //ToDo: move this function to highchart controller
             getAllSelectedParameters: function () {
                 var parameters = {};
                 this.sensorModels.forEach(function (sensor) {
                     sensor.parameters.selectedFields.forEach(function (selectedParameter) {
                         var parameter = {
-                            name: selectedParameter.name + '(' + sensor.selectedSensor + ')',
+                            name: selectedParameter.columnName + '(' + sensor.selectedSensor + ')',
                             unit: selectedParameter.unit
                         }
 
