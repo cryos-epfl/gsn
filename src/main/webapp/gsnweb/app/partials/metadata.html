@@ -119,8 +119,10 @@
                         <ol>
                             <li ng-repeat="reference in buildReferences()">
                                 <span class="inline" ng-show="referenceHasValue(reference, 'Author')"> {{reference.Author}}. </span>
+                                <b><span class="inline" ng-show="referenceHasValue(reference, 'Title')"> {{reference.Title}}. </span></b>
                                 <span class="inline" ng-show="referenceHasValue(reference, 'Publication_Date')"> {{reference.Publication_Date}}. </span>
-                                <span class="inline" ng-show="referenceHasValue(reference, 'Title')"> {{reference.Title}}. </span>
+
+                                <i><span class="inline" ng-show="referenceHasValue(reference, 'Publisher')"> {{reference.Publisher}}. </span></i>
                                 <i><span class="inline" ng-show="referenceHasValue(reference, 'Series')"> {{reference.Series}}. </span></i>
 
 
