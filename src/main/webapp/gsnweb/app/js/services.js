@@ -255,7 +255,8 @@ gsnDataServices.factory('UrlBuilder', ['$routeParams', '$filter', 'FilterParamet
             },
 
             formatDateGSN: function (date) {
-                return $filter('date')(Date.parse(date), 'dd/MM/yyyy HH:mm:ss');
+            //Use UTC timezone for query from 00:00
+                return $filter('date')(date, 'dd/MM/yyyy HH:mm:ss', "UTC");
             },
 
 
