@@ -14,7 +14,7 @@
                        ng-disabled="disabled"
                        on-select="update()"
                        on-remove="update()" style="width: 280px;">
-                <ui-select-match placeholder="Select sensors...">{{$item}}</ui-select-match>
+                <ui-select-match placeholder="Select stations...">{{$item}}</ui-select-match>
                 <ui-select-choices
                         repeat="sensor in sensorNames | filter:$select.search">
                     <!--<img ng-src="{{getSensorIcon(sensor)}}" style="width: 16px; height:16px">-->

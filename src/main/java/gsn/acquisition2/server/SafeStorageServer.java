@@ -69,7 +69,7 @@ public class SafeStorageServer {
 	    oscf.setDecoderMaxObjectSize(oscf.getEncoderMaxObjectSize());	    
 	    cfg.getFilterChain().addLast("codec",   new ProtocolCodecFilter(oscf));
 	    // Create an unbounded Thread pool
-	    ThreadPoolExecutor tpe = new ThreadPoolExecutor (0, Integer.MAX_VALUE, Long.MAX_VALUE, TimeUnit.NANOSECONDS, new LinkedBlockingQueue<Runnable>()) ;	    
+	    ThreadPoolExecutor tpe = new ThreadPoolExecutor (0, 20, Long.MAX_VALUE, TimeUnit.NANOSECONDS, new LinkedBlockingQueue<Runnable>()) ;
 	    cfg.getFilterChain().addLast("threadPool", new ExecutorFilter(tpe));
 	    
 	    logger.debug("MINA Decoder MAX: " + oscf.getDecoderMaxObjectSize() + " MINA Encoder MAX: " + oscf.getEncoderMaxObjectSize());

@@ -32,6 +32,12 @@ gsnWebApp.config(['$routeProvider', '$datepickerProvider',
                         function (Sensors) {
                             return Sensors.getSensors();
                         }
+                    ],
+                    filterModel: [
+                        'FilterModel',
+                        function (FilterModel) {
+                            return FilterModel.getModel();
+                        }
                     ]
                 },
                 controller: 'GoogleMapsController'

@@ -1,7 +1,7 @@
 var gsnMap = angular.module("gsnMap", ["leaflet-directive"]);
 
-gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', '$filter', 'sensors', 'FilterParameters', '$location', '_', 'MapFilterParameters',
-    function ($scope, leafletData, $compile, $filter, sensors, FilterParameters, $location, _, MapFilterParameters) {
+gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', '$filter', 'sensors', 'FilterParameters', '$location', '_', 'MapFilterParameters', 'filterModel',
+    function ($scope, leafletData, $compile, $filter, sensors, FilterParameters, $location, _, MapFilterParameters, filterModel) {
 
 
         $scope.geojson = {};
@@ -20,33 +20,45 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
         //Initialize filter parmeters
         //----------------------------
 
-        var namesOfGroup = {};
-        var parametersOfGroup = {};
+        var namesOfGroup = filterModel.data.allSensorsOfGroup;
+        var parametersOfGroup = filterModel.data.allParametersOfGroup;
 
-        var namesOfGroupPublic = {};
-        var parametersOfGroupPublic = {};
-        var publicSensors = [];
+        var namesOfGroupPublic = filterModel.data.publicSensorsOfGroup;
+        var parametersOfGroupPublic = filterModel.data.publicParametersOfGroup;
 
-        for (var i = 0; i < $scope.features.length; i++) {
-            var properties = $scope.features[i].properties;
-            if (!(namesOfGroup[properties.group])) {
-                namesOfGroup[properties.group] = [];
-                parametersOfGroup[properties.group] = [];
+        var publicSensors = filterModel.data.publicSensorNames;
+        var publicParameters= filterModel.data.publicParameters;
 
-            }
-            namesOfGroup[properties.group].push(properties.sensorName);
-            parametersOfGroup[properties.group] = _.union(parametersOfGroup[properties.group], properties.observed_properties);
+        var allSensorNames = filterModel.data.allSensorNames;
+        var allParameterNames = filterModel.data.allParameters;
 
-            if (properties.isPublic) {
-                if (!(namesOfGroupPublic[properties.group])) {
-                    namesOfGroupPublic[properties.group] = [];
-                    parametersOfGroupPublic[properties.group] = [];
-                }
-                namesOfGroupPublic[properties.group].push(properties.sensorName);
-                parametersOfGroupPublic[properties.group] = _.union(parametersOfGroup[properties.group], properties.observed_properties);
-                publicSensors.push(properties.sensorName);
-            }
-        }
+
+        //private Set<String> allSensorNames = Sets.newHashSet();
+        //private Set<String> publicSensorNames = Sets.newHashSet();
+        //
+        //private Set<String> allParameters = Sets.newHashSet();
+        //private Set<String> publicParameters = Sets.newHashSet();
+
+        //for (var i = 0; i < $scope.features.length; i++) {
+        //    var properties = $scope.features[i].properties;
+        //    if (!(namesOfGroup[properties.group])) {
+        //        namesOfGroup[properties.group] = [];
+        //        parametersOfGroup[properties.group] = [];
+        //
+        //    }
+        //    namesOfGroup[properties.group].push(properties.sensorName);
+        //    parametersOfGroup[properties.group] = _.union(parametersOfGroup[properties.group], properties.observed_properties);
+        //
+        //    if (properties.isPublic) {
+        //        if (!(namesOfGroupPublic[properties.group])) {
+        //            namesOfGroupPublic[properties.group] = [];
+        //            parametersOfGroupPublic[properties.group] = [];
+        //        }
+        //        namesOfGroupPublic[properties.group].push(properties.sensorName);
+        //        parametersOfGroupPublic[properties.group] = _.union(parametersOfGroup[properties.group], properties.observed_properties);
+        //        publicSensors.push(properties.sensorName);
+        //    }
+        //}
 
         angular.extend($scope, {
 
@@ -101,8 +113,8 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
 
         $scope.updateGroup = function (item) {
             if (item === 'All') {
-                $scope.mapSensorNames = [].concat.apply([], _.values(namesOfGroup).sort());
-                $scope.parameters = _.uniq([].concat.apply([], _.values(parametersOfGroup)).sort(), true);
+                $scope.mapSensorNames = allSensorNames.sort();
+                $scope.parameters = allParameterNames.sort();
             } else {
                 $scope.mapSensorNames = [].concat(namesOfGroup[item].sort());
                 $scope.parameters = _.uniq([].concat(parametersOfGroup[item].sort()), true);
@@ -230,6 +242,8 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
             }
             if ($scope.filter.group.selected && $scope.filter.group.selected != 'All') {
                 result = result && (feature.properties.group === $scope.filter.group.selected);
+                //ToDo: filtering based on externally specified groups
+                //result = result && (allSensorNames.indexOf(feature.properties.sensorName) > -1);
             }
 
             if ($scope.filter.parameters.length > 0) {
@@ -439,6 +453,30 @@ gsnMap.factory('Sensors', ['$http', function ($http) {
                 self.promise = $http({
                     method: 'GET',
                     url: 'http://montblanc.slf.ch:8090/web/virtualSensors?onlyPublic=false'
+                    //url: 'http://eflumpc18.epfl.ch/gsn/web/virtualSensors?onlyPublic=false'
+                    //url: 'http://localhost:8090/web/virtualSensors?onlyPublic=false'
+                });
+                self.promise.success(function (data, status, headers, conf) {
+                    return data;
+                });
+            }
+            return self.promise;
+        }
+    };
+    return sdo;
+}]);
+
+gsnMap.factory('FilterModel', ['$http', function ($http) {
+    this.promise;
+
+    var self = this;
+    var sdo = {
+        getModel: function () {
+
+            if (!self.promise) {
+                self.promise = $http({
+                    method: 'GET',
+                    url: 'http://localhost:8090/web/filterParameters'
                     //url: 'http://eflumpc18.epfl.ch/gsn/web/virtualSensors?onlyPublic=false'
                     //url: 'http://localhost:8090/web/virtualSensors?onlyPublic=false'
                 });
