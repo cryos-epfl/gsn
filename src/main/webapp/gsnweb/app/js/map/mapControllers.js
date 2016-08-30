@@ -52,11 +52,6 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
 
             layers: {
                 baselayers: {
-                    topo: {
-                        name: 'swiss topo',
-                        url: 'http://wmts10.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg',
-                        type: 'xyz'
-                    },
                     googleTerrain: {
                         name: 'Google Terrain',
                         layerType: 'TERRAIN',
@@ -71,6 +66,11 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
                         name: 'Google Streets',
                         layerType: 'ROADMAP',
                         type: 'google'
+                    },
+                    topo: {
+                        name: 'swiss topo',
+                        url: 'http://wmts10.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg',
+                        type: 'xyz'
                     },
                     OpenStreetMap: {
                         name: 'OpenStreetMap',
