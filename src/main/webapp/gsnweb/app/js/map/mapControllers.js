@@ -48,40 +48,36 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
             }
         }
 
-        angular.extend($scope, {
-
-            layers: {
-                baselayers: {
-                    googleTerrain: {
-                        name: 'Google Terrain',
-                        layerType: 'TERRAIN',
-                        type: 'google'
-                    },
-                    googleHybrid: {
-                        name: 'Google Hybrid',
-                        layerType: 'HYBRID',
-                        type: 'google'
-                    },
-                    googleRoadmap: {
-                        name: 'Google Streets',
-                        layerType: 'ROADMAP',
-                        type: 'google'
-                    },
-                    topo: {
-                        name: 'swiss topo',
-                        url: 'http://wmts10.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg',
-                        type: 'xyz'
-                    },
-                    OpenStreetMap: {
-                        name: 'OpenStreetMap',
-                        url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                        type: 'xyz'
-                    }
-
+        $scope.layers = {
+            baselayers: {
+                googleTerrain: {
+                    name: 'Google Terrain',
+                    layerType: 'TERRAIN',
+                    type: 'google'
+                },
+                googleHybrid: {
+                    name: 'Google Hybrid',
+                    layerType: 'HYBRID',
+                    type: 'google'
+                },
+                googleRoadmap: {
+                    name: 'Google Streets',
+                    layerType: 'ROADMAP',
+                    type: 'google'
+                },
+                topo: {
+                    name: 'swiss topo',
+                    url: 'http://wmts10.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg',
+                    type: 'xyz'
+                },
+                OpenStreetMap: {
+                    name: 'OpenStreetMap',
+                    url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    type: 'xyz'
                 }
-            }
 
-        });
+            }
+        };
 
         $scope.filter = MapFilterParameters;
 
@@ -204,7 +200,7 @@ gsnMap.controller("GoogleMapsController", ["$scope", 'leafletData', '$compile', 
                 $scope.filter.bounds = L.latLngBounds($scope.filter.bounds.southWest, $scope.filter.bounds.northEast);
 
             } else {
-                $scope.filter.bounds =  $scope.currentMarkers.getBounds();;
+                $scope.filter.bounds =  $scope.currentMarkers.getBounds();
             }
 
 
